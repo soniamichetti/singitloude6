@@ -19,8 +19,8 @@
                     <a href="../vue/artistes.html.php"><img src="../img/logo.png" alt="" width="200px"></a> 
                 </div>
                 <div class="icons">
-                    <a href="../vue/login.html.php"><img src="../img/login.webp" alt="login" width="30px"></a>
-                    <a href="#"><img src="../img/heart.svg" alt="like" width="30px"></a>
+                    <a href="../vue/vueInscription.html.php"><img src="../img/inscription.webp" alt="inscription" width="30px"></a>
+                    <a href="../vue/vueInscription.html.php"><img src="../img/heart.svg" alt="like" width="30px"></a>
                 </div>
 
             </div>

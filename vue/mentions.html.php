@@ -18,8 +18,8 @@
                     <a href="../vue/artistes.html.php"><img src="../img/logo.png" alt="" width="200px"></a> 
                 </div>
                 <div class="icons">
-                    <a href="../vue/login.html.php"><img src="../img/login.webp" alt="login" width="30px"></a>
-                    <a href="#"><img src="../img/heart.svg" alt="like" width="30px"></a>
+                    <a href="../vue/vueInscription.php"><img src="../img/vueInscription.webp" alt="vueInscription" width="30px"></a>
+                    <a href="../vue/vueInscription.php"><img src="../img/heart.svg" alt="like" width="30px"></a>
                 </div>
 
             </div>
@@ -60,18 +60,6 @@
     </html>
 </div>
 </main>
-<footer class="footer">
-  <div class="container">
-      <div class="row">
-          <div class="col">
-              <ul>
-                  <li><a href="../vue/mentions.html.php">Mentions Légales</a></li>
-                  
-              </ul>
-          </div>
-      </div>
-  </div>
-</footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body> 
 </html>

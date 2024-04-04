@@ -18,8 +18,8 @@
                 <a href="../vue/artistes.html.php"><img src="../img/logo.png" alt="" width="200px"></a> 
             </div>
             <div class="icons">
-                <a href="../vue/login.html.php"><img src="../img/login.webp" alt="login" width="30px"></a>
-                <a href="#"><img src="../img/heart.svg" alt="like" width="30px"></a>
+                <a href="../vue/vueInscription.php"><img src="../img/inscription.webp" alt="inscription" width="30px"></a>
+                <a href="../vue/vueInscription.php"><img src="../img/heart.svg" alt="like" width="30px"></a>
             </div>
         </div>
     </div>
@@ -28,8 +28,6 @@
     <div class="container main">
         <div class="row">
             <div class="col-md-6 side-image">
-                       
-                <!-------------      image     ------------->
                 
                 <div class="text">
                     <p>Ecoutez vos artistes préférés et chantez avec eux !</br> <i>Inscrivez vous pour avoir accès à un catalogue plus vaste</i></p>
@@ -42,6 +40,7 @@
                 <div class="input-box">
                    
                    <header>Connexion à un compte</header>
+
                    <div class="input-field">
                         <input type="text" class="input" id="email" required="" autocomplete="off">
                         <label for="email">Email</label> 
@@ -55,7 +54,7 @@
                         <input type="submit" class="submit" value="Connexion">
                    </div> 
                    <div class="signin">
-                    <span>Vous n'avez pas de compte ? <a href="../vue/login.html.php">Inscrivez-vous ici</a></span>
+                    <span>Vous n'avez pas de compte ? <a href="../vue/vueInscription.html.php">Inscrivez-vous ici</a></span>
                    </div>
                 </div>  
             </div>
