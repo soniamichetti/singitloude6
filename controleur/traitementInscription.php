@@ -1,15 +1,6 @@
 <?php 
-$servername = "localhost";
-$username = "root";
-$password = "" ;
 
-try {
-    $bdd = new PDO("mysql:host=$servername;dbname=SING", $username, $password); 
-    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-   
-} catch (PDOException $e) {
-    echo "Erreur : ".$e->getMessage();
-}
+include_once "../modele/db.php";
 
 if(isset($_POST['pseudoU'], $_POST['mailU'], $_POST['mdpU'])) {
     // Vérifier si les champs ne sont pas vides
@@ -46,8 +37,11 @@ if(isset($_POST['pseudoU'], $_POST['mailU'], $_POST['mdpU'])) {
                         "pseudoU" => $pseudoU
                     ));
 
+                    session_start();
+                    $_SESSION['pseudo'] = $pseudoU;
+
                     echo "<script>alert('Inscription réussie !');</script>";
-                    include "../vue/vueConfirmationInscriptionU.php";
+                    include "../vue/vueConfirmationU.php";
                 }
             }
         }

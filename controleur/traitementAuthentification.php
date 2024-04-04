@@ -1,15 +1,7 @@
 <?php 
-$servername = "localhost";
-$username = "root";
-$password = "" ;
+include_once "../modele/db.php";
 
-try {
-    $bdd = new PDO("mysql:host=$servername;dbname=SING", $username, $password); 
-    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo "Erreur : ".$e->getMessage();
-}
-
+session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['mailU'], $_POST['mdpU'])) {
         $mailU = $_POST['mailU'];
@@ -21,9 +13,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $utilisateur = $requete->fetch();
 
             if ($utilisateur) {
-                echo "<script>alert('Vous êtes connecté !');</script>";
-                // Inclure la vue de confirmation de la connexion
-                include "../vue/vueConfirmationInscriptionU.php";
+                if ($utilisateur['userType'] == 'admin') {
+                    // Stocker le pseudo dans la session
+                    $_SESSION['pseudo'] = $utilisateur['pseudoU'];
+                    echo "<script>alert('Vous êtes connecté en tant qu\'admin !');</script>";
+                    // Inclure la vue de confirmation pour l'admin
+                    include "../vue/vueConfirmationA.php";
+                } else {
+                    // Stocker le pseudo dans la session
+                    $_SESSION['pseudo'] = $utilisateur['pseudoU'];
+                    echo "<script>alert('Vous êtes connecté !');</script>";
+                    // Inclure la vue de confirmation pour les utilisateurs
+                    include "../vue/vueConfirmationU.php";
+                }
             } else {
                 echo "<script>alert('Email ou mot de passe incorrect.');</script>";
                 // Redirection vers la page d'authentification

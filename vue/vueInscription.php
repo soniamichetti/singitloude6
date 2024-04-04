@@ -53,13 +53,6 @@
                     <label for="pass">Mot de Passe</label>
                 </div>
                 <div class="input-field">
-    <select class="input" id="type_utilisateur" name="type_utilisateur" required="">
-        <option value="">Choisir le type d'utilisateur</option>
-        <option value="utilisateur">Utilisateur</option>
-        <option value="artiste">Artiste</option>
-    </select>
-</div>
-                <div class="input-field">
                     <input type="submit" class="submit" value="Inscription">
                 </div>
                 <div class="signin">

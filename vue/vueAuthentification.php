@@ -51,7 +51,7 @@
     <select class="input" id="type_utilisateur" name="type_utilisateur" required="">
         <option value="">Choisir le type d'utilisateur</option>
         <option value="utilisateur">Utilisateur</option>
-        <option value="artiste">Artiste</option>
+        <option value="artiste">Admin</option>
     </select>
 </div>
                 <div class="input-field">
