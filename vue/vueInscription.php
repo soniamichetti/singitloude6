@@ -8,8 +8,36 @@
     <link href="../style/stylelo.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+<header>
+        <div class="container">
+            <div class="navbar-top">
+                <div class="search-bar">
+                    <input type="text" placeholder="Rechercher...">
+                </div>
+                <div class="logo">
+                    <a href="../vue/artistes.html"><img src="../img/logo.png" alt="" width="200px"></a> 
+                </div>
+                <div class="icons">
+                    <a href="../vue/login.html"><img src="../img/login.webp" alt="login" width="30px"></a>
+                    <a href="#"><img src="../img/heart.svg" alt="like" width="30px"></a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="wrapper">
+    <div class="container main">
+        <div class="row">
+            <div class="col-md-6 side-image">
+                
+                <div class="text">
+                    <p>Ecoutez vos artistes préférés et chantez avec eux !</br> <i>Inscrivez vous pour avoir accès à un catalogue plus vaste</i></p>
+                </div>
+                
+            </div>
+
     <div class="col-md-6 right">
-        <form method="POST" action="../controleur/traitement.php">
+        <form method="POST" action="../controleur/traitementInscription.php">
             <div class="input-box">
                 <header>Création d'un compte</header>
                 <div class="input-field">
@@ -25,14 +53,24 @@
                     <label for="pass">Mot de Passe</label>
                 </div>
                 <div class="input-field">
+    <select class="input" id="type_utilisateur" name="type_utilisateur" required="">
+        <option value="">Choisir le type d'utilisateur</option>
+        <option value="utilisateur">Utilisateur</option>
+        <option value="artiste">Artiste</option>
+    </select>
+</div>
+                <div class="input-field">
                     <input type="submit" class="submit" value="Inscription">
                 </div>
                 <div class="signin">
-                    <span>Vous avez déjà un compte ?<a href="../vue/vueSignin.php"> Connectez-vous ici</a></span>
+                    <span>Vous avez déjà un compte ?<a href="../vue/vueAuthentification.php"> Connectez-vous ici</a></span>
                 </div>
             </div>
         </form>
     </div>
+    </div>
+    </div>
+</div>
 </body>
 
 </html>
