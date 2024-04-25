@@ -49,8 +49,11 @@
                     <label for="email">Email</label>
                 </div>
                 <div class="input-field">
-                    <input type="password" class="input" id="mdpU" name="mdpU" required="">
                     <label for="pass">Mot de Passe</label>
+                    <input type="password" class="input" id="mdpU" name="mdpU" 
+                    required 
+           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}"
+           title="Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.">
                 </div>
                 <div class="input-field">
                     <input type="submit" class="submit" value="Inscription">

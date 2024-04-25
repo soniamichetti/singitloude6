@@ -23,7 +23,7 @@
       <p>C'est une page utilisateur</p>
       <a href="../vue/vueAuthentification.php" class="btn">connexion</a>
       <a href="../vue/vueInscription.php" class="btn">inscription</a>
-      <a href="../deconnexion.php" class="btn">deconnexion</a>
+      <a href="../vue/artistes.html" class="btn">deconnexion</a>
    </div>
 
 </div>
