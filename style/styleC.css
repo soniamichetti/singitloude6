@@ -8,6 +8,7 @@
    text-decoration: none;
 }
 
+
 .container{
    min-height: 100vh;
    display: flex;
@@ -23,7 +24,7 @@
 
 .container .content h3{
    font-size: 30px;
-   color:#333;
+   color:#333333;
 }
 
 .container .content h3 span{

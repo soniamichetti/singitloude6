@@ -19,7 +19,7 @@
             </div>
             <div class="icons">
                 <a href="../vue/vueInscription.php"><img src="../img/inscription.webp" alt="inscription" width="30px"></a>
-                <a href="../vue/vueInscription.php"><img src="../img/heart.svg" alt="like" width="30px"></a>
+                <a href="../vue/vueInscription.php"><img src="../img/shopping.webp" alt="like" width="30px"></a>
             </div>
         </div>
     </div>
@@ -30,7 +30,7 @@
             <div class="col-md-6 side-image">
                 
                 <div class="text">
-                    <p>Ecoutez vos artistes préférés et chantez avec eux !</br> <i>Inscrivez vous pour avoir accès à un catalogue plus vaste</i></p>
+                    <p>Ecoutez vos artistes préférés et chantez avec eux !</br> <i>Inscrivez vous pour acheter des albums</i></p>
                 </div>
                 
             </div>

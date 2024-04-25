@@ -11,16 +11,19 @@
 
 </head>
 <body>
+  <div class="logo">
+     <a href="../vue/artistes.html"><img src="../img/logo.png" alt="" width="200px"></a> 
+  </div>
    
 <div class="container">
 
    <div class="content">
-      <h3>hi, <span>user</span></h3>
-      <h1>welcome <span><?php echo $_SESSION['pseudo'] ?></span></h1>
-      <p>this is an user page</p>
-      <a href="login_form.php" class="btn">login</a>
-      <a href="register_form.php" class="btn">register</a>
-      <a href="../deconnexion.php" class="btn">logout</a>
+      <h3>Salut, <span>utilisateur</span></h3>
+      <h1>bienvenue <span><?php echo $_SESSION['pseudo'] ?></span></h1>
+      <p>C'est une page utilisateur</p>
+      <a href="../vue/vueAuthentification.php" class="btn">connexion</a>
+      <a href="../vue/vueInscription.php" class="btn">inscription</a>
+      <a href="../deconnexion.php" class="btn">deconnexion</a>
    </div>
 
 </div>

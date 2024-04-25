@@ -93,8 +93,9 @@ div.album{
 .album h4{
     margin: 30px;
     text-decoration:underline;
-    margin-bottom: 15%;
-    font-weight: 400;
+    margin-bottom: 4%;
+    font-weight: 300;
+    font-size: 130%;
 }
 
 .album img {
@@ -161,4 +162,16 @@ div.album{
 
 .footer ul li a:hover {
     color: #333;
+}
+
+.btn{
+   display: inline-block;
+   border-radius: .5rem;
+   margin-top: 1rem;
+   margin-bottom: 4rem;
+   font-size: 1.2rem;
+   cursor: pointer;
+   padding:1rem 3rem;
+   text-transform: capitalize;
+   background-color: rgb(193, 144, 154);
 }

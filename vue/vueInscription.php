@@ -18,8 +18,8 @@
                     <a href="../vue/artistes.html"><img src="../img/logo.png" alt="" width="200px"></a> 
                 </div>
                 <div class="icons">
-                    <a href="../vue/login.html"><img src="../img/login.webp" alt="login" width="30px"></a>
-                    <a href="#"><img src="../img/heart.svg" alt="like" width="30px"></a>
+                    <a href="../vue/vueInscription.html"><img src="../img/inscription.webp" alt="vueInscription" width="30px"></a>
+                    <a href="../vue/vueInscription.html"><img src="../img/shopping.webp" alt="like" width="30px"></a>
                 </div>
             </div>
         </div>
@@ -31,7 +31,7 @@
             <div class="col-md-6 side-image">
                 
                 <div class="text">
-                    <p>Ecoutez vos artistes préférés et chantez avec eux !</br> <i>Inscrivez vous pour avoir accès à un catalogue plus vaste</i></p>
+                    <p>Ecoutez vos artistes préférés et chantez avec eux !</br> <i>Inscrivez vous pour acheter des albums</i></p>
                 </div>
                 
             </div>
