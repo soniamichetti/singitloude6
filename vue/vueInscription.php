@@ -18,8 +18,8 @@
                     <a href="../vue/artistes.html"><img src="../img/logo.png" alt="" width="200px"></a> 
                 </div>
                 <div class="icons">
-                    <a href="../vue/vueInscription.html"><img src="../img/inscription.webp" alt="vueInscription" width="30px"></a>
-                    <a href="../vue/vueInscription.html"><img src="../img/shopping.webp" alt="like" width="30px"></a>
+                    <a href="../vue/vueInscription.php"><img src="../img/inscription.webp" alt="vueInscription" width="30px"></a>
+                    <a href="../vue/vueInscription.php"><img src="../img/shopping.webp" alt="like" width="30px"></a>
                 </div>
             </div>
         </div>

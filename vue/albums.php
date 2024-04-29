@@ -1,5 +1,13 @@
+<?php
+session_start();
+include "../modele/db.php";
+include "../modele/database.php";
+
+$albums = getAlbums();
+?>
+
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
@@ -33,7 +41,7 @@
                 <a class="nav-link" href="../vue/artistes.html">Artistes</a>
               </li> 
               <li class="nav-item">
-                <a class="nav-link" href="../vue/albums.html">Albums</a>
+                <a class="nav-link" href="../vue/albums.php">Albums</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="../vue/form.html">Formulaire</a>
@@ -46,34 +54,34 @@
        </div>
     </header>
     <main>
-        <div class="whole">
-        <div class="album">
-            <h5 class="nom_ART"><a href="../vue/artistes.html">Aya Nakamura</a></h5>
-            <div><a href="../vue/aya.html"><img src="../img/nakamura.jpg"></a></div>
-            <h4 class="nom_ART"><a href="../vue/aya.html">NAKAMURA - 10.00€</a></h4>
-            <input type="submit" value="Ajouter au panier" name="add_to_cart" class="btn">
-        </div>
-        <div class="album">
-            <h5 class="nom_ART"><a href="../vue/artistes.html">Justin Bieber</a></h5>
-            <div><a href="../vue/purpose.html"><img src="../img/purpose.png"></a></div>
-            <h4 class="nom_ART"><a href="../vue/purpose.html">Purpose - 10.00€</a></h4>
-            <input type="submit" value="Ajouter au panier" name="add_to_cart" class="btn">
-        </div>
-        <div class="album">
-            <h5 class="nom_ART"><a href="../vue/artistes.html">SZA</a></h5>
-            <div><a href="../vue/sos.html"><img src="../img/sos.jpg"></a></div>
-            <h4 class="nom_ART"><a href="../vue/sos.html">SOS - 14.99€</a></h4>
-            <input type="submit" value="Ajouter au panier" name="add_to_cart" class="btn">
-        </div>
-        <div class="album"> 
-            <h5 class="nom_ART"><a href="../vue/artistes.html">Tiakola</a></h5>
-            <div><a href="../vue/melo.html"><img src="../img/melo.jpg"></a></div>
-            <h4 class="nom_ART"><a href="../vue/melo.html">Mélo - 12.00€</a></h4>
-            <input type="submit" value="Ajouter au panier" name="add_to_cart" class="btn">   
-        </div>
-        </div>
+    <div class="whole">
+        <?php foreach ($albums as $album): ?>
+            <div class="album">
+                <h5 class="nom_ART"><a href="../vue/artistes.html"><?php echo $album['titreAlb']; ?></a></h5>
+                <div><a href="../vue/<?php echo $album['photo']; ?>"><img src="../img/<?php echo $album['photo']; ?>"></a></div>
+                <h4 class="nom_ART"><a href="../vue/<?php echo $album['photo']; ?>"><?php echo $album['titreAlb']; ?> - <?php echo $album['prix']; ?>€</a></h4>
+                <form method="post">
+                    <button type="button" class="btn btn-danger" onclick="showAlert(this)" data-bs-toggle="popover" data-bs-placement="top">Ajouter au panier</button>
+                    <input type="hidden" name="id_album" value="<?php echo $album['idAlbum']; ?>">
+                </form>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</main>
 
-    </main>
+<div id="popover-content" class="d-none">
+    <p>Inscris-toi pour ajouter au panier</p>
+</div>
+
+<script>
+    function showAlert(btn) {
+        var popover = new bootstrap.Popover(btn, {
+            content: document.getElementById('popover-content').innerHTML,
+            html: true,
+        });
+        popover.show();
+    }
+</script>
     <footer class="footer">
         <div class="container">
             <div class="row">
@@ -81,7 +89,6 @@
                     <ul>
                         <li><a href="../vue/mentions.html">Mentions Légales</a></li>
                         <li><a href="../vue/CGU.html">CGU</a></li>
-                        
                     </ul>
                 </div>
             </div>
