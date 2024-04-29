@@ -13,18 +13,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $utilisateur = $requete->fetch();
 
             if ($utilisateur) {
-                // Stocker le pseudo dans la session
-                $_SESSION['pseudo'] = $utilisateur['pseudoU'];
                 if ($utilisateur['userType'] == 'admin') {
-                    $_SESSION['admin'] = true; // Set admin session
+                    // Stocker le pseudo dans la session
+                    $_SESSION['pseudo'] = $utilisateur['pseudoU'];
                     echo "<script>alert('Vous êtes connecté en tant qu\'admin !');</script>";
                     // Inclure la vue de confirmation pour l'admin
                     include "../vue/vueConfirmationA.php";
                 } else {
+                    // Stocker le pseudo dans la session
+                    $_SESSION['pseudo'] = $utilisateur['pseudoU'];
                     echo "<script>alert('Vous êtes connecté !');</script>";
-                    // Redirect to user albums page
-                    header("Location: ../vue/vueConfirmationU.php");
-                    exit();
+                    // Inclure la vue de confirmation pour les utilisateurs
+                    include "../vue/vueConfirmationU.php";
                 }
             } else {
                 echo "<script>alert('Email ou mot de passe incorrect.');</script>";
