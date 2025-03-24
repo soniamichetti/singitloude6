@@ -1,0 +1,243 @@
+/* 
+   styleCommon.css - Style commun pour le site SingLouder
+   Ce fichier gère uniquement la structure commune et le centrage des éléments
+   sans modifier les couleurs spécifiques à chaque page
+*/
+
+/* Boîte de modèle standard */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Structure de la barre de navigation supérieure */
+.navbar-top {
+    width: 100%;
+    height: 80px; /* Hauteur fixe pour l'en-tête */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+
+/* Centrage correct du logo */
+.logo {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    margin: 0 auto;
+}
+
+.logo img {
+    max-width: 200px;
+    height: auto;
+}
+
+/* Ajustement des icônes sans modifier les couleurs */
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.icons a {
+    display: flex;
+    align-items: center;
+}
+
+.icons a img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.2s ease;
+}
+
+.icons a img:hover {
+    transform: scale(1.1);
+}
+
+/* Amélioration des liens de navigation sans changer les couleurs */
+.nav-link {
+    margin: 0 20px;
+    padding: 10px 15px;
+    text-align: center;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+/* Contenu central - uniquement structure */
+.content {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.content h1 {
+    font-size: 5rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Pied de page - structure uniquement */
+.footer {
+    padding: 30px 0;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.footer ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.footer ul li {
+    margin: 0 15px;
+}
+
+.footer ul li a {
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* Structure des cartes d'artistes et d'albums */
+.whole {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.artiste, .album {
+    width: 300px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.artiste:hover, .album:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.artiste h4, .album h4 {
+    margin: 20px 0;
+    font-weight: 500;
+}
+
+.artiste img, .album img {
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.artiste p {
+    padding: 0 20px 20px;
+}
+
+/* Style pour le dropdown utilisateur */
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    color: #333;
+}
+
+.dropdown-menu {
+    min-width: 200px;
+    padding: 10px 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+    padding: 8px 20px;
+    transition: background-color 0.2s ease;
+}
+
+/* Cart styles */
+.cart-table {
+    width: 100%;
+    margin-top: 30px;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.cart-table th,
+.cart-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+.album-thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.cart-total {
+    text-align: right;
+    margin-top: 30px;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.empty-cart {
+    text-align: center;
+    margin: 60px 0;
+    padding: 30px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.empty-cart h3 {
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+/* Media queries pour la responsivité */
+@media screen and (max-width: 768px) {
+    .navbar-top {
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+    }
+    
+    .logo {
+        order: -1;
+        margin-bottom: 10px;
+    }
+    
+    .search-bar {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .search-bar input {
+        width: 100%;
+    }
+    
+    .content h1 {
+        font-size: 3rem;
+    }
+    
+    .artiste, .album {
+        width: 100%;
+    }
+    
+    .cart-table {
+        display: block;
+        overflow-x: auto;
+    }
+}

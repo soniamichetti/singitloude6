@@ -1,41 +1,60 @@
 <?php 
 include_once "../modele/db.php";
+include_once "../modele/security.php";
 
-session_start();
+// Rediriger si déjà connecté
+if (isLoggedIn()) {
+    if (isAdmin()) {
+        header("Location: ../vue/admin.php?login_success=true");
+    } else {
+        header("Location: ../vue/albums.php?login_success=true");
+    }
+    exit;
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['mailU'], $_POST['mdpU'])) {
-        $mailU = $_POST['mailU'];
-        $mdpU = $_POST['mdpU'];
+        $mailU = cleanInput($_POST['mailU']);
+        $mdpU = $_POST['mdpU']; // Ne pas appliquer htmlspecialchars au mot de passe avant la vérification
         
-        if ($mailU != "" && $mdpU != "") {
-            $requete = $bdd->prepare("SELECT * FROM utilisateur WHERE mailU = :mailU AND mdpU = :mdpU");
-            $requete->execute(array("mailU" => $mailU, "mdpU" => $mdpU));
+        if ($mailU !== "" && $mdpU !== "") {
+            // Préparation de la requête (seulement vérifier l'email)
+            $requete = $bdd->prepare("SELECT * FROM utilisateur WHERE mailU = :mailU");
+            $requete->execute(array("mailU" => $mailU));
             $utilisateur = $requete->fetch();
 
-            if ($utilisateur) {
-                if ($utilisateur['userType'] == 'admin') {
-                    // Stocker le pseudo dans la session
-                    $_SESSION['pseudo'] = $utilisateur['pseudoU'];
-                    echo "<script>alert('Vous êtes connecté en tant qu\'admin !');</script>";
-                    // Inclure la vue de confirmation pour l'admin
-                    include "../vue/vueConfirmationA.php";
+            // Vérification du mot de passe avec password_verify
+            if ($utilisateur && password_verify($mdpU, $utilisateur['mdpU'])) {
+                // Stocker les informations de l'utilisateur dans la session
+                $_SESSION['pseudo'] = $utilisateur['pseudoU'];
+                $_SESSION['mailU'] = $utilisateur['mailU'];
+                $_SESSION['userType'] = $utilisateur['userType'] ?? 'utilisateur';
+                
+                // Rediriger vers la page albums avec paramètre de succès
+                if (isAdmin()) {
+                    header("Location: ../vue/admin.php?login_success=true");
                 } else {
-                    // Stocker le pseudo dans la session
-                    $_SESSION['pseudo'] = $utilisateur['pseudoU'];
-                    echo "<script>alert('Vous êtes connecté !');</script>";
-                    // Inclure la vue de confirmation pour les utilisateurs
-                    include "../vue/vueConfirmationU.php";
+                    header("Location: ../vue/albums.php?login_success=true");
                 }
+                exit;
             } else {
-                echo "<script>alert('Email ou mot de passe incorrect.');</script>";
-                // Redirection vers la page d'authentification
-                echo "<script>window.location.href = '../vue/vueAuthentification.php';</script>";
+                // Identifiants incorrects
+                header("Location: ../vue/vueAuthentification.php?error=Identifiants incorrects");
+                exit;
             }
         } else {
-            echo "<script>alert('Veuillez remplir tous les champs du formulaire.');</script>";
-            // Redirection vers la page d'authentification
-            echo "<script>window.location.href = '../vue/vueAuthentification.php';</script>";
+            // Champs vides
+            header("Location: ../vue/vueAuthentification.php?error=Veuillez remplir tous les champs");
+            exit;
         }
+    } else {
+        // Champs manquants
+        header("Location: ../vue/vueAuthentification.php?error=Veuillez remplir tous les champs");
+        exit;
     }
+} else {
+    // Accès direct au script
+    header("Location: ../vue/vueAuthentification.php");
+    exit;
 }
 ?>
