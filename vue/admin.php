@@ -97,6 +97,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_album'])) {
     $activeTab = 'albums';
 }
 
+
+// 7bis. Ajouter un album avec genre(s)
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_album_with_genre'])) {
+    $titre = cleanInput($_POST['titre']);
+    $prix = (float)$_POST['prix'];
+    $photo = cleanInput($_POST['photo']);
+    $anneeSortie = (int)$_POST['anneeSortie'];
+    $idArtiste = (int)$_POST['id_artiste'];
+    $genres = isset($_POST['genres']) ? $_POST['genres'] : []; // Récupération des genres sélectionnés
+    
+    if (empty($titre) || empty($photo) || $prix <= 0 || $anneeSortie <= 0 || $idArtiste <= 0) {
+        $message = "Tous les champs sont obligatoires et doivent être valides.";
+        $messageType = "danger";
+    } else {
+        $idAlbum = addAlbum($titre, $prix, $photo, $anneeSortie, $idArtiste);
+        
+        if ($idAlbum) {
+            $message = "Album ajouté avec succès !";
+            $messageType = "success";
+            
+            // Associer les genres sélectionnés à l'album
+            if (!empty($genres)) {
+                foreach ($genres as $idGenre) {
+                    associerAlbumGenre($idAlbum, (int)$idGenre);
+                }
+            }
+            
+            // Recharger la liste des albums
+            $albums = getAlbums();
+        } else {
+            $message = "Erreur lors de l'ajout de l'album.";
+            $messageType = "danger";
+        }
+    }
+    $activeTab = 'albums';
+}
+
+
 // 4. Supprimer un album
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_album'])) {
     $idAlbum = (int)$_POST['id_album'];
@@ -270,19 +308,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['associate_genre'])) {
         
         <!-- Onglets de navigation -->
         <ul class="nav nav-tabs" id="adminTabs" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link <?php echo $activeTab == 'albums' ? 'active' : ''; ?>" id="albums-tab" data-bs-toggle="tab" data-bs-target="#albums" type="button" role="tab" aria-controls="albums" aria-selected="<?php echo $activeTab == 'albums' ? 'true' : 'false'; ?>">Gestion des Albums</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link <?php echo $activeTab == 'artistes' ? 'active' : ''; ?>" id="artistes-tab" data-bs-toggle="tab" data-bs-target="#artistes" type="button" role="tab" aria-controls="artistes" aria-selected="<?php echo $activeTab == 'artistes' ? 'true' : 'false'; ?>">Gestion des Artistes</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link <?php echo $activeTab == 'genres' ? 'active' : ''; ?>" id="genres-tab" data-bs-toggle="tab" data-bs-target="#genres" type="button" role="tab" aria-controls="genres" aria-selected="<?php echo $activeTab == 'genres' ? 'true' : 'false'; ?>">Gestion des Genres</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link <?php echo $activeTab == 'association' ? 'active' : ''; ?>" id="association-tab" data-bs-toggle="tab" data-bs-target="#association" type="button" role="tab" aria-controls="association" aria-selected="<?php echo $activeTab == 'association' ? 'true' : 'false'; ?>">Associations Album-Genre</button>
-            </li>
-        </ul>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link <?php echo $activeTab == 'albums' ? 'active' : ''; ?>" id="albums-tab" data-bs-toggle="tab" data-bs-target="#albums" type="button" role="tab" aria-controls="albums" aria-selected="<?php echo $activeTab == 'albums' ? 'true' : 'false'; ?>">Gestion des Albums</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link <?php echo $activeTab == 'artistes' ? 'active' : ''; ?>" id="artistes-tab" data-bs-toggle="tab" data-bs-target="#artistes" type="button" role="tab" aria-controls="artistes" aria-selected="<?php echo $activeTab == 'artistes' ? 'true' : 'false'; ?>">Gestion des Artistes</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link <?php echo $activeTab == 'genres' ? 'active' : ''; ?>" id="genres-tab" data-bs-toggle="tab" data-bs-target="#genres" type="button" role="tab" aria-controls="genres" aria-selected="<?php echo $activeTab == 'genres' ? 'true' : 'false'; ?>">Gestion des Genres</button>
+    </li>
+</ul>
         
         <!-- Contenu des onglets -->
         <div class="tab-content" id="adminTabsContent">
@@ -295,35 +330,48 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['associate_genre'])) {
                                 <h3 class="card-title h5">Ajouter un nouvel album</h3>
                             </div>
                             <div class="card-body">
-                                <form method="post" action="">
-                                    <div class="mb-3">
-                                        <label for="titre" class="form-label">Titre *</label>
-                                        <input type="text" id="titre" name="titre" class="form-control" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="prix" class="form-label">Prix *</label>
-                                        <input type="number" id="prix" name="prix" step="0.01" min="0.01" class="form-control" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="photo" class="form-label">Photo *</label>
-                                        <input type="text" id="photo" name="photo" class="form-control" required>
-                                        <small class="text-muted">Nom du fichier dans le dossier img (ex: album.jpg)</small>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="anneeSortie" class="form-label">Année de sortie *</label>
-                                        <input type="number" id="anneeSortie" name="anneeSortie" min="1900" max="<?php echo date('Y'); ?>" class="form-control" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="id_artiste" class="form-label">Artiste *</label>
-                                        <select id="id_artiste" name="id_artiste" class="form-select" required>
-                                            <option value="">Sélectionnez un artiste</option>
-                                            <?php foreach ($artistes as $artiste): ?>
-                                                <option value="<?php echo $artiste['idArtiste']; ?>"><?php echo htmlspecialchars($artiste['nomArt']); ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
-                                    <button type="submit" name="add_album" class="btn btn-primary">Ajouter l'album</button>
-                                </form>
+                            <form method="post" action="">
+    <div class="mb-3">
+        <label for="titre" class="form-label">Titre *</label>
+        <input type="text" id="titre" name="titre" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="prix" class="form-label">Prix *</label>
+        <input type="number" id="prix" name="prix" step="0.01" min="0.01" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="photo" class="form-label">Photo *</label>
+        <input type="text" id="photo" name="photo" class="form-control" required>
+        <small class="text-muted">Nom du fichier dans le dossier img (ex: album.jpg)</small>
+    </div>
+    <div class="mb-3">
+        <label for="anneeSortie" class="form-label">Année de sortie *</label>
+        <input type="number" id="anneeSortie" name="anneeSortie" min="1900" max="<?php echo date('Y'); ?>" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="id_artiste" class="form-label">Artiste *</label>
+        <select id="id_artiste" name="id_artiste" class="form-select" required>
+            <option value="">Sélectionnez un artiste</option>
+            <?php foreach ($artistes as $artiste): ?>
+                <option value="<?php echo $artiste['idArtiste']; ?>"><?php echo htmlspecialchars($artiste['nomArt']); ?></option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Genre(s) *</label>
+        <div class="border p-3 rounded" style="max-height: 150px; overflow-y: auto;">
+            <?php foreach ($genres as $genre): ?>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="genres[]" value="<?php echo $genre['idGenre']; ?>" id="genre<?php echo $genre['idGenre']; ?>">
+                    <label class="form-check-label" for="genre<?php echo $genre['idGenre']; ?>">
+                        <?php echo htmlspecialchars($genre['nomGenre']); ?>
+                    </label>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    <button type="submit" name="add_album_with_genre" class="btn btn-primary">Ajouter l'album</button>
+</form>
                             </div>
                         </div>
                     </div>
@@ -523,43 +571,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['associate_genre'])) {
                     </div>
                 </div>
             </div>
-            
-            <!-- Onglet Associations Album-Genre -->
-            <div class="tab-pane fade <?php echo $activeTab == 'association' ? 'show active' : ''; ?>" id="association" role="tabpanel" aria-labelledby="association-tab">
-                <div class="row mt-4">
-                    <div class="col-md-6 mx-auto">
-                        <div class="card admin-card">
-                            <div class="card-header">
-                                <h3 class="card-title h5">Associer un genre à un album</h3>
-                            </div>
-                            <div class="card-body">
-                                <form method="post" action="">
-                                    <div class="mb-3">
-                                        <label for="id_album_assoc" class="form-label">Album *</label>
-                                        <select id="id_album_assoc" name="id_album" class="form-select" required>
-                                            <option value="">Sélectionnez un album</option>
-                                            <?php foreach ($albums as $album): ?>
-                                                <option value="<?php echo $album['idAlbum']; ?>"><?php echo htmlspecialchars($album['titreAlb']); ?> (<?php echo htmlspecialchars($album['nomArt']); ?>)</option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="id_genre_assoc" class="form-label">Genre *</label>
-                                        <select id="id_genre_assoc" name="id_genre" class="form-select" required>
-                                            <option value="">Sélectionnez un genre</option>
-                                            <?php foreach ($genres as $genre): ?>
-                                                <option value="<?php echo $genre['idGenre']; ?>"><?php echo htmlspecialchars($genre['nomGenre']); ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
-                                    <button type="submit" name="associate_genre" class="btn btn-primary">Associer</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </main>
 
     <footer class="footer">
@@ -567,8 +578,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['associate_genre'])) {
             <div class="row">
                 <div class="col">
                     <ul>
-                        <li><a href="../vue/mentions.html">Mentions Légales</a></li>
-                        <li><a href="../vue/CGU.html">CGU</a></li>
+                        <li><a href="../vue/mentions.php">Mentions Légales</a></li>
+                        <li><a href="../vue/CGU.php">CGU</a></li>
                     </ul>
                 </div>
             </div>

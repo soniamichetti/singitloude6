@@ -13,16 +13,7 @@
     text-align: center;
     justify-content: space-between;
 }
-.search-bar input {
-    padding: 7px 10px;
-    border-radius: 15px;
-    border: 1px solid #ccc;
-    width: 220px;
-}
-.search-bar {
-    margin-top: 10px;
-    
-}
+
 
 @media screen and (max-width: 400px) {
 .search-bar input {
@@ -33,7 +24,7 @@
 .logo img {
     max-width: 100%;
     height: auto;
-    margin-right: 120px;
+    margin-right: 100px;
 }
 .icons a img{
     margin-left: 10px;

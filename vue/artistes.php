@@ -115,8 +115,8 @@ $artistes = getArtistes();
             <div class="row">
                 <div class="col">
                     <ul>
-                        <li><a href="../vue/mentions.html">Mentions Légales</a></li>
-                        <li><a href="../vue/CGU.html">CGU</a></li>
+                        <li><a href="../vue/mentions.php">Mentions Légales</a></li>
+                        <li><a href="../vue/CGU.php">CGU</a></li>
                     </ul>
                 </div>
             </div>
@@ -128,25 +128,25 @@ $artistes = getArtistes();
 </html>
 
 <?php
-// Fonction pour formater la description de l'artiste en une phrase concise
+// Fonction pour formater la description de l'artiste selon le nouveau format demandé
 function formatArtistDescription($artiste) {
     $description = "";
     
-    // Le métier est implicite (artiste musical)
-    $parts = [];
-    
-    if (!empty($artiste['paysArt'])) {
-        $parts[] = "originaire de " . htmlspecialchars($artiste['paysArt']);
-    }
-    
+    // Commencer par le métier
     if (!empty($artiste['metier'])) {
-        $parts[] = htmlspecialchars($artiste['metier']);
+        $description = htmlspecialchars($artiste['metier']);
+    } else {
+        $description = "Artiste";
     }
     
-    if (empty($parts)) {
-        $description = "Artiste musical(e)";
-    } else {
-        $description = "Artiste musical(e) " . implode(", ", $parts) . ".";
+    // Ajouter la provenance si disponible
+    if (!empty($artiste['paysArt'])) {
+        // Cas spécial pour les États-Unis
+        if ($artiste['paysArt'] == 'États-Unis') {
+            $description .= " originaire des États-Unis";
+        } else {
+            $description .= " originaire de " . htmlspecialchars($artiste['paysArt']);
+        }
     }
     
     return $description;

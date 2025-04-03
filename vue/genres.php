@@ -237,8 +237,8 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             <div class="row">
                 <div class="col">
                     <ul>
-                        <li><a href="../vue/mentions.html">Mentions Légales</a></li>
-                        <li><a href="../vue/CGU.html">CGU</a></li>
+                        <li><a href="../vue/mentions.php">Mentions Légales</a></li>
+                        <li><a href="../vue/CGU.php">CGU</a></li>
                     </ul>
                 </div>
             </div>

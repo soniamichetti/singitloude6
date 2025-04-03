@@ -82,7 +82,7 @@ $cartTotal = getCartTotal();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $pageTitle; ?> ⎸ SingLouder</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../style/styleAlbs.css" type="text/css" rel="stylesheet">
+    <link href="../style/styleC.css" type="text/css" rel="stylesheet">
     <link href="../style/styleCommon.css" type="text/css" rel="stylesheet">
 </head>
 <body>
@@ -192,7 +192,7 @@ $cartTotal = getCartTotal();
                 
                 <div class="d-flex justify-content-end my-3">
                     <a href="../vue/albums.php" class="btn btn-secondary me-2">Continuer mes achats</a>
-                    <a href="#" class="btn btn-primary">Procéder au paiement</a>
+                    <a href="../vue/paiement.php" class="btn btn-primary">Procéder au paiement</a>
                 </div>
             <?php else: ?>
                 <div class="alert alert-info text-center my-5">
@@ -209,8 +209,8 @@ $cartTotal = getCartTotal();
             <div class="row">
                 <div class="col">
                     <ul>
-                        <li><a href="../vue/mentions.html">Mentions Légales</a></li>
-                        <li><a href="../vue/CGU.html">CGU</a></li>
+                        <li><a href="../vue/mentions.php">Mentions Légales</a></li>
+                        <li><a href="../vue/CGU.php">CGU</a></li>
                     </ul>
                 </div>
             </div>

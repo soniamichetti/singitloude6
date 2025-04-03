@@ -12,20 +12,10 @@
 /* Structure de la barre de navigation supérieure */
 .navbar-top {
     width: 100%;
-    height: 80px; /* Hauteur fixe pour l'en-tête */
+    height: 60px; /* Hauteur fixe pour l'en-tête */
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 0 20px;
-}
-
-
-/* Centrage correct du logo */
-.logo {
-    display: flex;
-    justify-content: center;
-    flex: 1;
-    margin: 0 auto;
 }
 
 .logo img {
@@ -218,15 +208,7 @@
         order: -1;
         margin-bottom: 10px;
     }
-    
-    .search-bar {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-    
-    .search-bar input {
-        width: 100%;
-    }
+
     
     .content h1 {
         font-size: 3rem;
@@ -239,5 +221,63 @@
     .cart-table {
         display: block;
         overflow-x: auto;
+    }
+}
+
+
+/* Réorganiser les icônes (profil à gauche, panier à droite) */
+.icons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+/* Assurer que le menu déroulant du profil s'affiche par-dessus la navigation */
+.dropdown-menu {
+    position: absolute;
+    z-index: 1050; /* Valeur plus élevée pour passer au-dessus des autres éléments */
+    min-width: 200px;
+    padding: 10px 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+/* Améliorer le centrage du logo */
+.logo {
+    justify-content: center;
+    transform: translateX(178%);
+    margin-top: 10px;
+    
+}
+
+/* Ajout d'espace pour le menu déroulant */
+.navbar.bg-bisque {
+    margin-top: 10px;
+}
+
+/* Ajustements responsifs pour les icônes */
+@media (max-width: 768px) {
+    .navbar-top {
+        height: auto;
+        padding: 10px;
+    }
+    
+    .logo {
+        position: static;
+        transform: none;
+        text-align: center;
+        margin: 10px auto;
+    }
+    
+    .icons {
+        justify-content: center;
+        margin-top: 10px;
+    }
+    
+    .dropdown-menu {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
     }
 }

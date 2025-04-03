@@ -171,12 +171,12 @@ if (isset($_GET['genre']) && is_numeric($_GET['genre'])) {
             </div>
             <div class="card-body p-2">
                 <div class="genres-slider">
-                    <a href="../vue/albums.php" class="btn <?php echo !$selectedGenre ? 'btn-primary' : 'btn-outline-primary'; ?> genre-button">
+                    <a href="../vue/albums.php" class="btn <?php echo !$selectedGenre ? 'btn-secondary' : 'btn-light'; ?> genre-button">
                         Tous les genres
                     </a>
                     <?php foreach ($genres as $genre): ?>
                         <a href="../vue/albums.php?genre=<?php echo $genre['idGenre']; ?>" 
-                           class="btn <?php echo $selectedGenre == $genre['idGenre'] ? 'btn-primary' : 'btn-outline-primary'; ?> genre-button">
+                           class="btn <?php echo $selectedGenre == $genre['idGenre'] ? 'btn-secondary' : 'btn btn-light'; ?> genre-button">
                             <?php echo $genre['nomGenre']; ?> 
                             <span class="badge bg-secondary"><?php echo $genre['nbAlbums']; ?></span>
                         </a>
@@ -210,7 +210,7 @@ if (isset($_GET['genre']) && is_numeric($_GET['genre'])) {
                                         Retirer des favoris
                                     </a>
                                 <?php else: ?>
-                                    <a href="../controleur/gestionFavoris.php?action=ajouter&id=<?php echo $album['idAlbum']; ?>&redirect=<?php echo urlencode($_SERVER['REQUEST_URI']); ?>" class="btn btn-outline-success">
+                                    <a href="../controleur/gestionFavoris.php?action=ajouter&id=<?php echo $album['idAlbum']; ?>&redirect=<?php echo urlencode($_SERVER['REQUEST_URI']); ?>" class="btn btn-secondary">
                                         Ajouter aux favoris
                                     </a>
                                 <?php endif; ?>
@@ -229,8 +229,8 @@ if (isset($_GET['genre']) && is_numeric($_GET['genre'])) {
             <div class="row">
                 <div class="col">
                     <ul>
-                        <li><a href="../vue/mentions.html">Mentions Légales</a></li>
-                        <li><a href="../vue/CGU.html">CGU</a></li>
+                        <li><a href="../vue/mentions.php">Mentions Légales</a></li>
+                        <li><a href="../vue/CGU.php">CGU</a></li>
                     </ul>
                 </div>
             </div>

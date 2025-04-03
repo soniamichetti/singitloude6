@@ -37,8 +37,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit;
         }
 
-        // Hachage du mot de passe
-        $mdpU = password_hash($mdpU_clair, PASSWORD_DEFAULT);
+        // MODIFICATION IMPORTANTE : 
+        // Utiliser un coût plus élevé pour plus de sécurité
+        $mdpU = password_hash($mdpU_clair, PASSWORD_DEFAULT, ['cost' => 12]);
 
         // Vérification du pseudo unique
         $requete_verif_pseudo = $bdd->prepare("SELECT COUNT(*) FROM utilisateur WHERE pseudoU = :pseudoU");

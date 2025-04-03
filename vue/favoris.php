@@ -19,7 +19,7 @@ $favoris = getFavoris($_SESSION['mailU']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $pageTitle; ?> ⎸ SingLouder</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../style/styleAlbs.css" type="text/css" rel="stylesheet">
+    <link href="../style/styleF.css" type="text/css" rel="stylesheet">
     <link href="../style/styleCommon.css" type="text/css" rel="stylesheet">
 </head>
 <body>
@@ -114,7 +114,7 @@ $favoris = getFavoris($_SESSION['mailU']);
             <div class="alert alert-info text-center my-5">
                 <h4>Vous n'avez pas encore d'albums favoris</h4>
                 <p>Parcourez notre sélection d'albums et ajoutez ceux qui vous plaisent à vos favoris !</p>
-                <a href="../vue/albums.php" class="btn btn-primary mt-3">Voir les albums</a>
+                <a href="../vue/albums.php" class="btn btn-secondary">Voir les albums</a>
             </div>
         <?php endif; ?>
     </main>
@@ -124,8 +124,8 @@ $favoris = getFavoris($_SESSION['mailU']);
             <div class="row">
                 <div class="col">
                     <ul>
-                        <li><a href="../vue/mentions.html">Mentions Légales</a></li>
-                        <li><a href="../vue/CGU.html">CGU</a></li>
+                        <li><a href="../vue/mentions.php">Mentions Légales</a></li>
+                        <li><a href="../vue/CGU.php">CGU</a></li>
                     </ul>
                 </div>
             </div>

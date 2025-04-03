@@ -10,16 +10,7 @@
     text-align: center;
     justify-content: space-between;
 }
-.search-bar input {
-    padding: 7px 10px;
-    border-radius: 15px;
-    border: 1px solid #ccc;
-    width: 220px;
-}
-.search-bar {
-    margin-top: 10px;
-    
-}
+
 
 @media screen and (max-width: 400px) {
 .search-bar input {
@@ -69,9 +60,8 @@
     font-weight: 700;
     text-align: center;
     color: #fef7f7;
-    margin-left: 40px;
-   
 }
+
 @media screen  and (max-width:400px) {
     .content h1{
         font-size: 30px;
@@ -166,9 +156,9 @@ div.album{
 
 .btn{
    display: inline-block;
-   border-radius: .5rem;
+   border-radius: 1.5rem;
    margin-top: 1rem;
-   margin-bottom: 4rem;
+   margin-bottom: 1rem;
    font-size: 1.2rem;
    cursor: pointer;
    padding:1rem 3rem;
